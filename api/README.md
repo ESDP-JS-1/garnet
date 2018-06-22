@@ -1,9 +1,13 @@
 # How to start:
 
-Copy db.template.json to db.json
+Install mongoDB
 
 `$ npm run dev`
-
 or
+`$ yarn dev`
 
-`$ npm start`
+To start fixtures.js
+
+`$ npm run seed`
+or
+`$ yarn seed`
