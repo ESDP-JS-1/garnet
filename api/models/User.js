@@ -7,30 +7,30 @@ const SALT_WORK_FACTOR = 10;
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    validate: {
-      validator: async function (value) {
-        if (!this.isModified('username')) return true;
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
+            validator: async function (value) {
+                if (!this.isModified('username')) return true;
 
-        const user = await User.findOne({username: value});
-        if (user) throw new Error('This user already exists');
-        return true;
-      },
-      message: 'This username already exists'
-    }
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  displayName: {
-    type: String
-  },
-    photo:{
-      type:String
+                const user = await User.findOne({username: value});
+                if (user) throw new Error('This user already exists');
+                return true;
+            },
+            message: 'This username already exists'
+        }
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    displayName: {
+        type: String
+    },
+    photo: {
+        type: String
     },
     role: {
         type: String,
@@ -40,31 +40,31 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
+    if (!this.isModified('password')) return next();
 
-  const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
-  this.password = await bcrypt.hash(this.password, salt);
+    const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+    this.password = await bcrypt.hash(this.password, salt);
 
-  next();
+    next();
 });
 
 UserSchema.set('toJSON', {
-  transform: (doc, ret, options) => {
-    delete ret.password;
-    return ret;
-  }
+    transform: (doc, ret, options) => {
+        delete ret.password;
+        return ret;
+    }
 });
 
-UserSchema.methods.checkPassword = function(password) {
-  return bcrypt.compare(password, this.password);
+UserSchema.methods.checkPassword = function (password) {
+    return bcrypt.compare(password, this.password);
 };
 
-UserSchema.methods.generateToken = function() {
-  return jwt.sign(
-    {id: this._id},
-    config.jwt.secret,
-    {expiresIn: config.jwt.expires}
-  );
+UserSchema.methods.generateToken = function () {
+    return jwt.sign(
+        {id: this._id},
+        config.jwt.secret,
+        {expiresIn: config.jwt.expires}
+    );
 };
 
 const User = mongoose.model('User', UserSchema);
