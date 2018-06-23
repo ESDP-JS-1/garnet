@@ -1,8 +1,10 @@
 import thunkMiddleware from 'redux-thunk'
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import createHistory from "history/createBrowserHistory";
-import {routerMiddleware} from "react-router-redux";
+import {routerMiddleware, routerReducer} from "react-router-redux";
 import {loadState, saveState} from "./localStorage";
+
+import usersReducer from "./reducers/users";
 
 const  rootReducer = combineReducers({
     users: usersReducer,
