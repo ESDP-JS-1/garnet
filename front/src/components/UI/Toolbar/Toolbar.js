@@ -3,6 +3,7 @@ import {Navbar} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 
 import UserMenu from "./Menus/UserMenu";
+import AdminMenu from "./Menus/AdminMenu";
 
 
 
@@ -10,11 +11,11 @@ const Toolbar = ({user, logout}) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <LinkContainer to="/" exact><a>Garnet</a></LinkContainer>
+        <LinkContainer to={`/${user.role}/${user.username}`} exact><a>Garnet</a></LinkContainer>
       </Navbar.Brand>
     </Navbar.Header>
     <Navbar.Collapse>
-      {user ? <UserMenu user={user} logout={logout} /> : null }
+      {user ? user.role==='admin' ? <AdminMenu user={user} logout={logout} /> : <UserMenu user={user} logout={logout} /> : null }
     </Navbar.Collapse>
   </Navbar>
 );

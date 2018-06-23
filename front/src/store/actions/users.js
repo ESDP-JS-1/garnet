@@ -19,7 +19,7 @@ export const loginUser = userData => {
         return axios.post('/users', userData).then(
             response => {
                 dispatch(loginUserSuccess(response.data.user, response.data.token));
-                dispatch(push('/'));
+                dispatch(push(`${response.data.user.role}/${response.data.user.username}`));
                 NotificationManager.success('Success', response.data.message);
             },
             error => {
