@@ -11,7 +11,7 @@ const Toolbar = ({user, logout}) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <LinkContainer to={`/${user.role}/${user.username}`} exact><a>Garnet</a></LinkContainer>
+        <LinkContainer to={user ? `/${user.role}/${user.username}`: '/'} exact><a>Garnet</a></LinkContainer>
       </Navbar.Brand>
     </Navbar.Header>
     <Navbar.Collapse>

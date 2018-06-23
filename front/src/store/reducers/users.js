@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case LOGIN_USER_SUCCESS:
             return {...state, user: action.user, token: action.token, loginError: null};
         case LOGIN_USER_FAILURE:
-            return {...state, loginError: action.error}
+            return {...state, loginError: action.error};
         case LOGOUT_USER:
             return {...state, user: null};
         default:

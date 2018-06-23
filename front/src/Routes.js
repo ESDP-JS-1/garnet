@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Switch} from "react-router-dom";
 
 import Login from "./containers/Login/Login";
+import AddInfo from "./containers/AddInfo/AddInfo";
 
 // const ProtectedRoute = ({isAllowed, ...props}) => (
 //   isAllowed ? <Route {...props}/> : <Redirect to="/" />
@@ -10,6 +11,7 @@ import Login from "./containers/Login/Login";
 const Routes = ({user}) => (
   <Switch>
     <Route path="/" exact component={Login}/>
+    <Route path="/add" exact component={AddInfo}/>
     {/*<ProtectedRoute*/}
       {/*isAllowed={user && user.role === 'admin'}*/}
       {/*path="/products/new"*/}
