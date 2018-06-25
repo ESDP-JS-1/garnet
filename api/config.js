@@ -8,10 +8,6 @@ module.exports = {
   db: {
     url: 'mongodb://localhost:27017',
     name: 'garnet'
-  },
-  jwt: {
-    secret: 'verySecretKey',
-    expires: 3600
   }
 };
 

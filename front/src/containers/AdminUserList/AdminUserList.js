@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {Button, PageHeader} from "react-bootstrap";
-import {fetchAllUsers} from "../../store/actions/users";
+import {fetchAllUsers} from "../../store/actions/admin";
 import {Link} from "react-router-dom";
 
-import ProductListItem from '../../components/AdminUserListItems/AdminUserListItems';
+import AdminUserListItems from '../../components/AdminUserListItems/AdminUserListItems';
 
 class AdminUserList extends Component {
     componentDidMount() {
@@ -17,7 +17,7 @@ class AdminUserList extends Component {
                 <PageHeader>
                     All Users
                     { this.props.user && this.props.user.role === 'admin' &&
-                    <Link to="/products/new">
+                    <Link to="/users/create">
                         <Button bsStyle="primary" className="pull-right">
                             Add user
                         </Button>
@@ -25,15 +25,15 @@ class AdminUserList extends Component {
                     }
                 </PageHeader>
 
-                {this.props.products.map(product => (
-                    <ProductListItem
-                        key={product._id}
-                        id={product._id}
-                        title={product.title}
-                        price={product.price}
-                        image={product.image}
+                {this.props.usersList ? this.props.usersList.user_list.map(user => (
+                    <AdminUserListItems
+                        key={user._id}
+                        id={user._id}
+                        username={user.username}
+                        role={user.role}
+                        photo={user.photo}
                     />
-                ))}
+                )) : null}
             </Fragment>
         );
     }
@@ -41,7 +41,7 @@ class AdminUserList extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.products.products,
+        usersList: state.admin.usersList,
         user: state.users.user
     }
 };

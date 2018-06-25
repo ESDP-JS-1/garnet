@@ -67,16 +67,15 @@ const createRouter = () => {
     }
   });
 
-  router.get('/user-list', [auth, permit('admin')], async (req, res) => {
-    const limit = req.query('limit') || 20;
-    const skip = req.query('skip') || 0;
-    const user_list = await User.find().limit(limit).skip(skip);
+  router.get('/user-list',[auth,permit('admin')], async (req, res) => {
+    // const limit = req.query('limit') || 20;
+    // const skip = req.query('skip') || 0;
+    const user_list = await User.find();//.limit(limit).skip(skip);
 
     if (!user_list) {
       return res.status(400).send({error: 'User list not found'});
     }
-
-    res.send({user_list, limit, skip});
+      res.send({user_list})//, limit, skip});
   });
 
   router.delete('/', [auth, permit('admin')], async (req, res) => {

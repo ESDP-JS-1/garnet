@@ -1,7 +1,6 @@
+const nanoid = require('nanoid');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const jwt = require("jsonwebtoken");
-const config = require('../config');
 const SALT_WORK_FACTOR = 10;
 
 const Schema = mongoose.Schema;
@@ -32,6 +31,7 @@ const UserSchema = new Schema({
     photo: {
         type: String
     },
+    token: String,
     role: {
         type: String,
         default: 'employee',
@@ -60,13 +60,8 @@ UserSchema.methods.checkPassword = function (password) {
 };
 
 UserSchema.methods.generateToken = function () {
-    return jwt.sign(
-        {id: this._id},
-        config.jwt.secret,
-        {expiresIn: config.jwt.expires}
-    );
+    this.token = nanoid();
 };
-
 const User = mongoose.model('User', UserSchema);
 
 module.exports = User;

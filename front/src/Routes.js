@@ -1,23 +1,23 @@
 import React from 'react';
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 
 import Login from "./containers/Login/Login";
-import AddInfo from "./containers/AddInfo/AddInfo";
+import AdminUserList from "./containers/AdminUserList/AdminUserList";
+// import AddInfo from "./containers/AddInfo/AddInfo";
 
-// const ProtectedRoute = ({isAllowed, ...props}) => (
-//   isAllowed ? <Route {...props}/> : <Redirect to="/" />
-// );
+const ProtectedRoute = ({isAllowed, ...props}) => (
+  isAllowed ? <Route {...props}/> : <Redirect to="/" />
+);
 
 const Routes = ({user}) => (
   <Switch>
     <Route path="/" exact component={Login}/>
-    <Route path="/add" exact component={AddInfo}/>
-    {/*<ProtectedRoute*/}
-      {/*isAllowed={user && user.role === 'admin'}*/}
-      {/*path="/products/new"*/}
-      {/*exact*/}
-      {/*component={}*/}
-    {/*/>*/}
+    {/*<Route path="/admin" component={AdminUserList}/>*/}
+    <ProtectedRoute
+      isAllowed={user && user.role === 'admin'}
+      path="/admin/"
+      component={AdminUserList}
+    />
   </Switch>
 );
 

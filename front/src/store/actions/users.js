@@ -18,7 +18,7 @@ export const loginUser = userData => {
     return dispatch => {
         return axios.post('/users', userData).then(
             response => {
-                dispatch(loginUserSuccess(response.data.user, response.data.token));
+                dispatch(loginUserSuccess(response.data.user, response.data.user.token));
                 dispatch(push(`${response.data.user.role}/${response.data.user.username}`));
                 NotificationManager.success('Success', response.data.message);
             },
@@ -51,7 +51,7 @@ export const logoutUser = () => {
 export const logoutExpiredUser = () => {
     return dispatch => {
         dispatch({type: LOGOUT_USER});
-        dispatch(push('/login'));
+        dispatch(push('/'));
         NotificationManager.error('Error', 'Your session has expired, please login again');
     }
 };
