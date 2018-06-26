@@ -15,7 +15,7 @@ const Routes = ({user}) => (
     {/*<Route path="/admin" component={AdminUserList}/>*/}
     <ProtectedRoute
       isAllowed={user && user.role === 'admin'}
-      path="/admin/"
+      path="/users-list/"
       component={AdminUserList}
     />
   </Switch>

@@ -15,6 +15,9 @@ const UserMenu = ({user, logout}) => {
             <LinkContainer to="/" exact>
                 <NavItem>Resume</NavItem>
             </LinkContainer>
+            <LinkContainer to="/users-list" exact>
+                <NavItem>Users List</NavItem>
+            </LinkContainer>
             <LinkContainer to="/" exact>
                 <NavItem>Generate Resume</NavItem>
             </LinkContainer>
