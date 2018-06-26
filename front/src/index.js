@@ -9,7 +9,6 @@ import registerServiceWorker from './registerServiceWorker';
 import store, {history} from './store/configureStore';
 
 import axios from './axios-api';
-import {logoutExpiredUser} from "./store/actions/users";
 
 axios.interceptors.request.use(config => {
     try {
@@ -21,14 +20,6 @@ axios.interceptors.request.use(config => {
     return config;
 });
 
-axios.interceptors.response.use(response => response,
-    error => {
-        if (error.response && error.response.status === 401) {
-            store.dispatch(logoutExpiredUser());
-        } else {
-            return Promise.reject(error);
-        }
-    });
 
 const app = (
     <Provider store={store}>

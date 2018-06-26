@@ -19,7 +19,7 @@ export const loginUser = userData => {
         return axios.post('/users', userData).then(
             response => {
                 dispatch(loginUserSuccess(response.data.user, response.data.user.token));
-                dispatch(push(`${response.data.user.role}/${response.data.user.username}`));
+                dispatch(push('/me'));
                 NotificationManager.success('Success', response.data.message);
             },
             error => {
@@ -35,7 +35,7 @@ export const logoutUser = () => {
     return (dispatch, getState) => {
         const token = getState().users.user.token;
         const headers = {'Token': token};
-        axios.delete('/users', {headers}).then(
+        axios.delete('/users/sessions', {headers}).then(
             response => {
                 dispatch({type: LOGOUT_USER});
                 dispatch(push('/'));
@@ -48,11 +48,4 @@ export const logoutUser = () => {
     }
 };
 
-export const logoutExpiredUser = () => {
-    return dispatch => {
-        dispatch({type: LOGOUT_USER});
-        dispatch(push('/'));
-        NotificationManager.error('Error', 'Your session has expired, please login again');
-    }
-};
 

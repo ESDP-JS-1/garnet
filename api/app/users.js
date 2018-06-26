@@ -67,7 +67,7 @@ const createRouter = () => {
     }
   });
 
-  router.get('/user-list',[auth,permit('admin')], async (req, res) => {
+  router.get('/user-list',[auth, permit('admin')], async (req, res) => {
     // const limit = req.query('limit') || 20;
     // const skip = req.query('skip') || 0;
     const user_list = await User.find();//.limit(limit).skip(skip);
@@ -85,6 +85,21 @@ const createRouter = () => {
 
     res.send(deleted_user);
   });
+    router.delete('/sessions', async (req, res) => {
+        const token = req.get('Token');
+        const success = {message: 'Logout success!'};
+
+        if (!token) return res.send(success);
+
+        const user = await User.findOne({token});
+
+        if (!user) return res.send(success);
+
+        user.generateToken();
+        await user.save();
+
+        return res.send(success);
+    });
 
   return router;
 };
