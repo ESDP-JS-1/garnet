@@ -3,7 +3,6 @@ import {Redirect, Route, Switch} from "react-router-dom";
 
 import Login from "./containers/Login/Login";
 import AdminUserList from "./containers/AdminUserList/AdminUserList";
-// import AddInfo from "./containers/AddInfo/AddInfo";
 
 const ProtectedRoute = ({isAllowed, ...props}) => (
   isAllowed ? <Route {...props}/> : <Redirect to="/" />

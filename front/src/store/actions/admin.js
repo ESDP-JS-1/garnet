@@ -14,3 +14,8 @@ export const fetchAllUsers = () => {
     }
 };
 
+export const  addInfo  = infoData => {
+
+
+};
+

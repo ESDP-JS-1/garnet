@@ -1,4 +1,4 @@
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk';
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import createHistory from "history/createBrowserHistory";
 import {routerMiddleware, routerReducer} from "react-router-redux";
