@@ -12,18 +12,18 @@ const UserMenu = ({user, logout}) => {
 
     return (
         <Nav>
-            <LinkContainer to="/" exact>
-                <NavItem>Resume</NavItem>
-            </LinkContainer>
+            {/*<LinkContainer to="/" exact>*/}
+                {/*<NavItem>Resume</NavItem>*/}
+            {/*</LinkContainer>*/}
             <LinkContainer to="/users-list" exact>
                 <NavItem>Users List</NavItem>
             </LinkContainer>
-            <LinkContainer to="/" exact>
-                <NavItem>Generate Resume</NavItem>
+            <LinkContainer to="/skills-categories" exact>
+                <NavItem>Skills categories</NavItem>
             </LinkContainer>
-            <LinkContainer to="/" exact>
-                <NavItem>Reference books</NavItem>
-            </LinkContainer>
+            {/*<LinkContainer to="/" exact>*/}
+                {/*<NavItem>Reference books</NavItem>*/}
+            {/*</LinkContainer>*/}
 
             <NavDropdown title={navTitle} id="user-menu">
                 <MenuItem divider/>

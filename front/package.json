@@ -6,6 +6,8 @@
     "axios": "^0.18.0",
     "history": "^4.7.2",
     "list-to-tree": "^2.2.1",
+    "prop-types": "^15.6.2",
+    "rc-tree": "^1.12.5",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
