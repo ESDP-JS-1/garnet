@@ -5,6 +5,7 @@ const config = require('./config');
 const app = express();
 
 const users = require('./app/users');
+const skillCategories = require('./app/skillCategories');
 
 
 const port = 8000;
@@ -21,6 +22,7 @@ db.once('open', () => {
     console.log('Mongoose connected!');
 
     app.use('/users', users());
+    app.use('/skill-categories', skillCategories());
 
 
     app.listen(port, () => {
