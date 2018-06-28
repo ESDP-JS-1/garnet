@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const config = require('./config');
 const User = require('./models/User');
 const SkillCategory = require('./models/SkillCategory');
+const Skills = require('./models/Skills');
 
 
 mongoose.connect(config.db.url + '/' + config.db.name);
@@ -15,6 +16,7 @@ db.once('open', async () => {
     try {
         await db.dropCollection('users');
         await db.dropCollection('skillcategories');
+        await db.dropCollection('skills');
     } catch (e) {
         console.log('Collections were not present, skipping drop...');
     }
@@ -58,15 +60,16 @@ db.once('open', async () => {
         parentId: programmingLanguage._id
     });
 
-    await SkillCategory.create({
+    await Skills.create({
         title: 'Communicative',
-        parentId: communication._id
+        categoryId: communication._id
     });
 
-    await SkillCategory.create({
+    await Skills.create({
         title: 'Js native',
-        parentId: jsLanguage._id
+        categoryId: jsLanguage._id
     },);
+
 
 
     db.close();
