@@ -78,4 +78,12 @@ class SkillsCategories extends React.Component {
     }
 }
 
-export default SkillsCategories;
+const initMapDispatchToProps = dispatch => ({
+
+});
+
+const initMapStateToProps = state => ({
+    skillCategory: state.skill.skillCategory,
+    skillList: state.skill.skillList
+});
+export default connect(initMapStateToProps, initMapDispatchToProps)(SkillsCategories);

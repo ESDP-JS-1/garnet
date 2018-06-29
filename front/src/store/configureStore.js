@@ -7,10 +7,12 @@ import {loadState, saveState} from "./localStorage";
 
 import usersReducer from "./reducers/users";
 import adminReducer from "./reducers/admin";
+import skillReducer from "./reducers/skills";
 
 const  rootReducer = combineReducers({
     admin: adminReducer,
     users: usersReducer,
+    skill: skillReducer,
     routing: routerReducer
 });
 
