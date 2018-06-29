@@ -9,7 +9,8 @@ const  SkillsSchema = new Schema({
         },
         categoryId: {
             type: Schema.Types.ObjectId,
-            ref: 'Skills'
+            ref: 'SkillCategory',
+            required: true
         }
 });
 
