@@ -18,6 +18,7 @@ class SkillsCategories extends React.Component {
       if (!value.parentId) {
         value.parentId = 0;
       }
+      value.text = value.title
       return value;
     });
     const currentTree = new LTT(list, {
@@ -31,9 +32,9 @@ class SkillsCategories extends React.Component {
 
   render() {
     const skillList = this.renderTree(this.props.skillCategory.concat(this.props.skillList));
-    console.log(skillList);
-
-      return <TreeView data={skillList} />
+    return(
+      <TreeView data={skillList} />
+    )
 
   }
 }
