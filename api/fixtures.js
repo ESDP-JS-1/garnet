@@ -42,31 +42,31 @@ db.once('open', async () => {
     });
 
     const [hardSkill, softSkill] = await SkillCategory.create({
-        title: 'Hard Skills'
+        text: 'Hard Skills'
     }, {
-        title: 'Soft Skills'
+        text: 'Soft Skills'
     });
 
     const [programmingLanguage, communication] = await SkillCategory.create({
-        title: 'Programming Languages',
+        text: 'Programming Languages',
         parentId: hardSkill._id
     }, {
-        title: 'Communication',
+        text: 'Communication',
         parentId: softSkill._id
     });
 
     const jsLanguage = await SkillCategory.create({
-        title: 'Js language',
+        text: 'Js language',
         parentId: programmingLanguage._id
     });
 
     await Skills.create({
-        title: 'Communicative',
+        text: 'Communicative',
         categoryId: communication._id
     });
 
     await Skills.create({
-        title: 'Js native',
+        text: 'Js native',
         categoryId: jsLanguage._id
     },);
 

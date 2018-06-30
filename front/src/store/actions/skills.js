@@ -22,7 +22,7 @@ const fetchSkillError = (err) => {
 
 export const fetchSkill = () => {
   return dispatch => {
-    dispatch(fetchSkillRequest())
+    dispatch(fetchSkillRequest());
     return axios.get('/skills').then(
       response => {
         dispatch(fetchSkillSuccess(response.data))
@@ -48,7 +48,7 @@ const fetchSkillCategoryError = (err) => {
 
 export const fetchSkillCategory = () => {
   return dispatch => {
-    dispatch(fetchSkillCategoryRequest())
+    dispatch(fetchSkillCategoryRequest());
     return axios.get('/skill-categories').then(
       response => {
         dispatch(fetchSkillCategorySuccess(response.data))
