@@ -12,10 +12,10 @@ const FormElement = props => {
 
   if (props.type === 'select') {
     componentClass = 'select';
-    props.options.unshift({id: '', text: 'Please select ' + props.text + ' ...'});
+    props.options.unshift({id: '', title: 'Please select ' + props.title + ' ...'});
 
     formControlChildren = props.options.map(element => (
-      <option key={element.id} value={element.id}>{element.text}</option>
+      <option key={element.id} value={element.id}>{element.title}</option>
     ));
   }
 
@@ -25,7 +25,7 @@ const FormElement = props => {
       validationState={props.error && 'error'}
     >
       <Col componentClass={ControlLabel} sm={2}>
-        {props.text}
+        {props.title}
       </Col>
       <Col sm={10}>
         <FormControl
@@ -51,7 +51,7 @@ const FormElement = props => {
 FormElement.propTypes = {
   propertyName: PropTypes.string.isRequired,
   error: PropTypes.string,
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   required: PropTypes.bool,
   placeholder: PropTypes.string,
