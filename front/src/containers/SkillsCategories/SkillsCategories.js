@@ -18,7 +18,7 @@ class SkillsCategories extends React.Component {
       if (!value.parentId) {
         value.parentId = 0;
       }
-      value.text = value.title
+      value.text = value.title;
       return value;
     });
     const currentTree = new LTT(list, {
