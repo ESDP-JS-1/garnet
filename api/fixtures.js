@@ -64,12 +64,12 @@ db.once('open', async () => {
 
     await Skills.create({
         title: 'Communicative',
-        categoryId: communication._id
+        parentId: communication._id
     });
 
     await Skills.create({
         title: 'Js native',
-        categoryId: jsLanguage._id
+        parentId: jsLanguage._id
     });
 
 

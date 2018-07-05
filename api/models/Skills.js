@@ -7,7 +7,7 @@ const  SkillsSchema = new Schema({
             type: String,
             required: true
         },
-        categoryId: {
+        parentId: {
             type: Schema.Types.ObjectId,
             ref: 'SkillCategory',
             required: true
