@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { isDescendant } from './treeDataUtils';
 import classnames from './classnames';
 import 'react-sortable-tree/style.css';
+import {MenuItem, NavDropdown} from "react-bootstrap";
 
 class NodeRendererDefault extends Component {
   render() {
@@ -99,7 +100,7 @@ class NodeRendererDefault extends Component {
             {node.expanded &&
             !isDragging && (
               <div
-                style={{ width: scaffoldBlockPxWidth }}
+                style={{ width: scaffoldBlockPxWidth}}
                 className={classnames(
                   'rst__lineChildren',
                   rowDirectionClass
@@ -176,6 +177,10 @@ class NodeRendererDefault extends Component {
                   ))}
                 </div>
               </div>
+              <NavDropdown style={{position: 'absolute', top: '20px', right: '20px', listStyle: 'none'}} eventKey="4" title="edit" id="nav-dropdown">
+                <MenuItem onClick={() => this.props.addChildren(this.props.id)}>Add children</MenuItem>
+                <MenuItem onClick={() => this.props.deleteNode(this.props.id)}>Remove</MenuItem>
+              </NavDropdown>
             </div>
           )}
         </div>
