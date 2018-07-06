@@ -20,6 +20,7 @@ export const loginUser = userData => {
             response => {
                 dispatch(loginUserSuccess(response.data.user, response.data.user.token));
                 dispatch(push('/me'));
+                console.log(response.data.message);
                 NotificationManager.success('Success', response.data.message);
             },
             error => {
