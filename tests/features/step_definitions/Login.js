@@ -15,12 +15,28 @@ module.exports = function() {
     return button.click();
   });
 
-  this.Then(/^я вижу сообщение об успешном логине$/, function () {
+  this.Then(/^я вижу сообщение об успешном логине/, function () {
     const notification = browser.element('.notification-message .title');
     notification.waitForExist(5000);
 
     const notificationText = browser.element('.notification-message .title').getText();
 
     return expect(notificationText).toBe('User and password correct!');
+  });
+  this.Then(/^я вижу сообщение о неправильном пароле/, function () {
+      const notification = browser.element('.alert-danger');
+      notification.waitForExist(5000);
+
+    const error = browser.element('.alert-danger').getText();
+
+    return expect(error).toBe('Password is wrong!');
+  });
+  this.Then(/^я вижу сообщение пользователь не найден/, function () {
+      const notification = browser.element('.alert-danger');
+      notification.waitForExist(5000);
+
+    const error = browser.element('.alert-danger').getText();
+
+    return expect(error).toBe('Username not found');
   });
 }; 
