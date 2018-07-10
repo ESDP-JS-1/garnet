@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {Button, PageHeader} from "react-bootstrap";
-import {fetchAllUsers} from "../../store/actions/admin";
+import {fetchAllUsers, removeUser} from "../../store/actions/admin";
 import {Link} from "react-router-dom";
 
 import AdminUserListItems from '../../components/AdminUserListItems/AdminUserListItems';
@@ -17,7 +17,7 @@ class AdminUserList extends Component {
                 <PageHeader>
                     All Users
                     { this.props.user && this.props.user.role === 'admin' &&
-                    <Link to="/users/create">
+                    <Link to="/create-user/">
                         <Button bsStyle="primary" className="pull-right">
                             Add user
                         </Button>
@@ -25,13 +25,14 @@ class AdminUserList extends Component {
                     }
                 </PageHeader>
 
-                {this.props.usersList ? this.props.usersList.user_list.map(user => (
+                {this.props.usersList ? this.props.usersList.map(user => (
                     <AdminUserListItems
                         key={user._id}
                         id={user._id}
                         username={user.username}
                         role={user.role}
                         photo={user.photo}
+                        remove={() => this.props.removeUser(user._id)}
                     />
                 )) : null}
             </Fragment>
@@ -48,7 +49,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchUsers: () => dispatch(fetchAllUsers())
+        onFetchUsers: () => dispatch(fetchAllUsers()),
+        removeUser: id => dispatch(removeUser(id))
     }
 };
 

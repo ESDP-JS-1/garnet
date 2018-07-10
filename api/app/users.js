@@ -35,6 +35,8 @@ const createRouter = () => {
         return res.status(400).send({error: 'Server problems'});
       }
 
+
+      await user.save();
       res.send(user);
     } catch (err) {
       return res.status(400).send({error: err});
@@ -75,16 +77,23 @@ const createRouter = () => {
     if (!user_list) {
       return res.status(400).send({error: 'User list not found'});
     }
-      res.send({user_list})//, limit, skip});
+      res.send(user_list)//, limit, skip});
   });
 
-  router.delete('/', [auth, permit('admin')], async (req, res) => {
-    const deleted_user = await User.remove({_id: req.body.id});
+    router.get('/:id', [auth, permit('admin')], (req, res) => {
+        User.findOne({_id: req.params.id})
+            .then(user => res.send(user))
+            .catch(error => res.status(400).send(error));
+    });
+
+  router.delete('/:id', [auth, permit('admin')], async (req, res) => {
+    const deleted_user = await User.remove({_id: req.params.id});
 
     if (!deleted_user) return res.status(400).send({error: 'User not found'});
 
     res.send(deleted_user);
   });
+
     router.delete('/sessions', async (req, res) => {
         const token = req.get('Token');
         const success = {message: 'Logout success!'};

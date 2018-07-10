@@ -1,9 +1,10 @@
 import React from 'react';
-import {Image, Panel} from "react-bootstrap";
+import {Button, Image, Panel} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import config from '../../config';
+import {LinkContainer} from "react-router-bootstrap";
 
 const AdminUserListItems = props => {
     let image = null;
@@ -26,6 +27,17 @@ const AdminUserListItems = props => {
                 <strong style={{marginLeft: '10px'}}>
                     {props.role}
                 </strong>
+
+                <Button bsStyle="danger"
+                        className="pull-right"
+                        onClick={props.remove}
+                >Delete
+                </Button>
+                <LinkContainer to={`/edit-user/${props.id}`}>
+                    <Button bsStyle="primary" className="pull-right" style={{marginRight: '10px'}}>
+                        Edit
+                    </Button>
+                </LinkContainer>
             </Panel.Body>
         </Panel>
     );

@@ -12,7 +12,7 @@ const FormElement = props => {
 
   if (props.type === 'select') {
     componentClass = 'select';
-    props.options.unshift({id: '', title: 'Please select ' + props.title + ' ...'});
+    props.options.unshift({id: '', title: 'Please select ' + props.title.toLowerCase() });
 
     formControlChildren = props.options.map(element => (
       <option key={element.id} value={element.id}>{element.title}</option>
