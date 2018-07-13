@@ -1,14 +1,22 @@
 let config;
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+console.log(process.env);
 
-  config = {
-    apiUrl: 'http://localhost:8000/'
-  };
-} else {
-  config = {
-    apiUrl: 'http://37.139.9.77:8000/'
-  }
+switch (process.env.REACT_APP_ENV) {
+    case('test') :
+        config = {
+            apiUrl: 'http://localhost:8008/'
+        };
+        break;
+    case ('production'):
+        config = {
+            apiUrl: 'http://37.139.9.77:8000/'
+        };
+        break;
+    default:
+        config = {
+            apiUrl: 'http://localhost:8000/'
+        };
 }
 
 export default config;
