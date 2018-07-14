@@ -2,7 +2,7 @@
 
 cd ../front/
 yarn
-pm2 start "yarn start:test" --name front
+pm2 start "BROWSER=none yarn start:test" --name front
 
 cd ../api
 yarn
