@@ -61,7 +61,7 @@ const initMapDispatchToProps = dispatch => ({
 });
 
 const initMapStateToProps = state => ({
-  skillCategory: state.skill.listCategory,
+  skillCategory: state.skill.companiesList,
   skillList: state.skill.listSkills
 });
 export default connect(initMapStateToProps, initMapDispatchToProps)(SkillsCategories);

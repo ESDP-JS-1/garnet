@@ -7,6 +7,7 @@ const app = express();
 const users = require('./app/users');
 const skillCategories = require('./app/skillCategories');
 const skills = require('./app/skills');
+const companies = require('./app/companies');
 
 
 const port =process.env.PORT || 8000;
@@ -25,6 +26,7 @@ db.once('open', () => {
     app.use('/users', users());
     app.use('/skill-categories', skillCategories());
     app.use('/skills', skills());
+    app.use('/companies', companies());
 
 
     app.listen(port, () => {

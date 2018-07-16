@@ -5,6 +5,7 @@ import Login from "./containers/Login/Login";
 import AdminUserList from "./containers/AdminUserList/AdminUserList";
 import SkillsCategories from "./containers/SkillsCategories/SkillsCategories";
 import CreateUser from "./containers/CreateUser/CreateUser";
+import Companies from "./containers/CompaniesList/CompaniesList";
 // import AddInfo from "./containers/AddInfo/AddInfo";
 
 const ProtectedRoute = ({isAllowed, ...props}) => (
@@ -34,6 +35,11 @@ const Routes = ({user}) => (
             isAllowed={user && user.role === 'admin'}
             path="/edit-user/:id"
             component={CreateUser}
+        />
+        <ProtectedRoute
+            isAllowed={user && user.role === 'admin'}
+            path="/companies"
+            component={Companies}
         />
     </Switch>
 );

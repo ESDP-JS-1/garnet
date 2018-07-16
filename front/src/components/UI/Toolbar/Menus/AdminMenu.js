@@ -21,9 +21,9 @@ const UserMenu = ({user, logout}) => {
             <LinkContainer to="/skills-categories" exact>
                 <NavItem>Skills categories</NavItem>
             </LinkContainer>
-            {/*<LinkContainer to="/" exact>*/}
-                {/*<NavItem>Reference books</NavItem>*/}
-            {/*</LinkContainer>*/}
+            <LinkContainer to="/companies" exact>
+                <NavItem>Companies</NavItem>
+            </LinkContainer>
 
             <NavDropdown title={navTitle} id="user-menu">
                 <MenuItem divider/>

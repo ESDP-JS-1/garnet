@@ -25,7 +25,7 @@ class AdminUserList extends Component {
                     }
                 </PageHeader>
 
-                {this.props.usersList ? this.props.usersList.map(user => (
+                {this.props.companiesList ? this.props.companiesList.map(user => (
                     <AdminUserListItems
                         key={user._id}
                         id={user._id}
@@ -42,7 +42,7 @@ class AdminUserList extends Component {
 
 const mapStateToProps = state => {
     return {
-        usersList: state.admin.usersList,
+        companiesList: state.admin.companiesList,
         user: state.users.user
     }
 };

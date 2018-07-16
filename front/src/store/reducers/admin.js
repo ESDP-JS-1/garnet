@@ -5,7 +5,7 @@ import {
 } from "../actions/actionTypes";
 
 const initialState = {
-    usersList: null,
+    companiesList: null,
     singleUser: null,
     createUserError: null,
     removeUserError: null
@@ -14,16 +14,16 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_USER_SUCCESS:
-            return {...state, usersList: action.users};
+            return {...state, companiesList: action.users};
         case CREATE_USER_SUCCESS:
             return {...state, createUserError: null};
         case CREATE_USER_FAILURE:
             return {...state, createUserError: action.error};
         case REMOVE_USER_SUCCESS:
-            let listUser = [...state.usersList];
+            let listUser = [...state.companiesList];
             const index = listUser.findIndex(user => user._id === action.id);
             listUser.splice(index, 1);
-            return {...state, usersList: listUser, removeUserError: null};
+            return {...state, companiesList: listUser, removeUserError: null};
         case REMOVE_USER_FAILURE:
             return {...state, removeUserError: action.error};
         case FETCH_SINGLE_USERS_SUCCESS:

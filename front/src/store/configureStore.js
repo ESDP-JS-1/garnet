@@ -8,11 +8,13 @@ import {loadState, saveState} from "./localStorage";
 import usersReducer from "./reducers/users";
 import adminReducer from "./reducers/admin";
 import skillReducer from "./reducers/skills";
+import companiesReducer from "./reducers/companies";
 
 const  rootReducer = combineReducers({
     admin: adminReducer,
     users: usersReducer,
     skill: skillReducer,
+    companies: companiesReducer,
     routing: routerReducer
 });
 
