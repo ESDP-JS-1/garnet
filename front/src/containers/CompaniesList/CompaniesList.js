@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
-import {removeUser} from "../../store/actions/admin";
+import {BootstrapTable, InsertModalHeader, TableHeaderColumn} from "react-bootstrap-table";
+import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 
 
 import {fetchAllCompanies} from "../../store/actions/companies";
-import {BootstrapTable, InsertModalHeader, TableHeaderColumn} from "react-bootstrap-table";
 
 class AdminUserList extends Component {
     componentDidMount() {
@@ -61,7 +60,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchCompanies: () => dispatch(fetchAllCompanies()),
-        removeUser: id => dispatch(removeUser(id))
     }
 };
 
