@@ -4,15 +4,44 @@ import {BootstrapTable, InsertModalHeader, TableHeaderColumn} from "react-bootst
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 
-
-import {fetchAllCompanies} from "../../store/actions/companies";
+import {deleteCompany, fetchAllCompanies} from "../../store/actions/companies";
 
 class AdminUserList extends Component {
     componentDidMount() {
         this.props.onFetchCompanies();
     }
 
+    cellEditButton(cell, row, enumObject, rowIndex) {
+        let theButton;
+        // for(var group in this.state.jsonFromDatabase){
+        //     if (this.state.jsonFromDatabase[group].id !== row.id){
+        //         // Display this button if the group is not in the database
+        //         theButton = <button style={{ backgroundColor: "blue"}}
+        //                             type="button"
+        //                             onClick={() => this.onClickGroupSelected(cell, row, rowIndex)}>
+        //             Process the group
+        //         </button>
+        //     } else {
+        //         // Display this button if the group is already in the database
+        theButton = <button style={{backgroundColor: "blue"}}
+                            type="button"
+                            onClick={() => this.onClickGroupToUpdate(cell, row, rowIndex)}>
+            Edit
+        </button>
+        //     }
+        // }
+        return theButton
+    }
 
+    cellDeleteButton(cell, row){
+        // console.log(row._id);
+        let itemId = row._id;
+        return <button style={{backgroundColor: "red"}}
+                                type="button"
+                                onClick={()=>this.props.onDeleteCompanies(itemId)}>
+            Delete
+        </button>;
+    }
     beforeClose(e) {
         alert(`[Custom Event]: Before modal close event triggered!`);
     }
@@ -39,12 +68,18 @@ class AdminUserList extends Component {
         const options = {
             insertModalHeader: this.createCustomModalHeader
         };
+
         return (
-            <BootstrapTable data={ this.props.companiesList } options={ options } insertRow>
-                <TableHeaderColumn dataField='title' isKey={ true }>Title</TableHeaderColumn>
+            <BootstrapTable data={this.props.companiesList} options={options} insertRow>
+                <TableHeaderColumn dataField='_id' isKey hidden>ID</TableHeaderColumn>
+                <TableHeaderColumn dataField='title'>Title</TableHeaderColumn>
                 <TableHeaderColumn dataField='description'>Description</TableHeaderColumn>
-                <TableHeaderColumn dataField='friendly'>Is friendly</TableHeaderColumn>
-                <TableHeaderColumn dataField='country'>Country</TableHeaderColumn>
+                <TableHeaderColumn dataField='friendly' width='100'>Is friendly</TableHeaderColumn>
+                <TableHeaderColumn dataField='country' width='100'>Country</TableHeaderColumn>
+                <TableHeaderColumn dataField='button' width='100'
+                                   dataFormat={this.cellEditButton}>Edit</TableHeaderColumn>
+                <TableHeaderColumn dataField='button' width='100'
+                                   dataFormat={this.cellDeleteButton}>Delete</TableHeaderColumn>
             </BootstrapTable>
         );
     }
@@ -60,6 +95,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchCompanies: () => dispatch(fetchAllCompanies()),
+        onDeleteCompanies: (id) => dispatch(deleteCompany(id)),
     }
 };
 

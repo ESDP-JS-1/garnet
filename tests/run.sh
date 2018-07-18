@@ -11,6 +11,6 @@ pm2 start "yarn dev:test" --name api
 
 cd ../tests/
 yarn
-yarn start
+yarn start:ci
 
-pm2 kill
+pm2 kill`
